@@ -236,6 +236,13 @@ var domains = {
  *
  */
 
+ var laptopCosts = {
+  MacBook : 1500,
+  Alienware : 2500,
+  HP : 499,
+  Surface : 320
+ };
+
 
 /* Step 17
  *
@@ -252,6 +259,8 @@ var domains = {
  *
  */
 
+ var livingOrganismClassification = ["Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species"];
+
 
 /* Step 18
  *
@@ -265,6 +274,8 @@ var domains = {
  * "cvs"
  *
  */
+
+ var scmList = ["git", "svn", "mercurial", "bazaar", "cvs"];
 
 
 /* Step 19
@@ -285,6 +296,15 @@ var domains = {
  *
  */
 
+ var beers = {
+  IPA : "Ale",
+  Lager : "Strong",
+  Heffeweisen : "German",
+  Stout : ["Thick", "Dark"],
+  Porter : "Bitter",
+  Ale : ["Light", "Golden"]
+ };
+
 
 /* Step 20
  *
@@ -294,6 +314,10 @@ var domains = {
  * @return {String}
  *
  */
+
+ function sahara_river() {
+  return "Nile River";
+ }
 
 
 /* Step 21
@@ -307,6 +331,10 @@ var domains = {
  *
  */
 
+ function addNumbers(n1, n2) {
+  return n1 + n2;
+ }
+
 
 /* Step 22
  *
@@ -319,6 +347,14 @@ var domains = {
  * @return {Bool}
  *
  */
+
+ function installLinux(linux){
+  if(linuxFlavors.indexOf(linux) > -1) {
+    return true;
+  } else {
+    return false;
+  }
+ }
 
 
 /* Step 23
@@ -339,6 +375,18 @@ var domains = {
  *
  */
 
+ function drink(beer){
+  if(beers.hasOwnProperty(beer)){
+    if (typeof beers[beer] === 'object') {
+      return "This " + beer + " is " + beers[beer][0] + " and " + beers[beer][1] + " . ";
+    } else {
+      return "This " + beer + " is " + beers[beer] + " . ";
+          }
+      } else {
+        return false;
+      }
+  }
+
 
 /* Step 24
  *
@@ -352,6 +400,14 @@ var domains = {
  *
  */
 
+ function browseURL (browser) {
+  if (browsers.hasOwnProperty(browser)){
+    return browsers[browser]
+  } else {
+    return false;
+  }
+ }
+
 
 /* Step 25
  *
@@ -362,6 +418,16 @@ var domains = {
  * @return {String}
  *
  */
+
+ function listLivingOrgClass () {
+  var list = document.createElement('ul');
+  for (var i = 0; i < livingOrganismClassification.length; i++){
+    var thisList = document.createElement('li');
+    thisList.innerHTML = livingOrganismClassification[i];
+    list.appendChild(thisList);
+  }
+  return list.outerHTML;
+ }
 
 
 /* Step 26
@@ -383,6 +449,15 @@ var domains = {
  * @return {String}
  *
  */
+
+ function favoritePlanet(planet){
+  if(planets.indexOf(planet) > -1){
+    var newPlanet = planets[Math.floor(Math.random()*planets.length)];
+    return "I'm from " + planet + ", but I wish I could go to " + newPlanet;
+  } else {
+    return planet + " is not a planet! ";
+  }
+ }
 
 
 /* Step 27
@@ -408,6 +483,25 @@ var domains = {
  *
  */
 
+ class Person {
+  constructor (name, money, age, gender) {
+    this.name = name;
+    this.money = money;
+    this.age = age;
+    this.gender = gender;
+  }
+
+  spendMoney(amount){
+    this.money -= amount;
+  }
+
+  earnMoney(amount){
+    this.money += amount;
+  }
+ }
+
+
+
 
 /* Step 28
  *
@@ -421,6 +515,14 @@ var domains = {
  *
  */
 
+ function purchaseLaptop(laptop) {
+  if(laptopCosts.hasOwnProperty(laptop)) {
+    return laptopCosts[laptop].toString();
+  } else {
+    return -1;
+  }
+ }
+
 
 /* Step 29
  *
@@ -433,6 +535,14 @@ var domains = {
  * @return {Bool}
  *
  */
+
+ function canTalkAbout(club) {
+  if(club === club_name){
+    return false;
+  } else {
+    return true;
+  }
+ }
 
 
 /* Step 30
@@ -455,6 +565,15 @@ var domains = {
  *   write
  *
  */
+
+ class Pen {
+  constructor(color){
+    this.color = color;
+  }
+  write(message){
+    return this.color + ": " + message;
+  }
+ }
 
 
 /* Step 31
@@ -484,6 +603,25 @@ var domains = {
  *
  */
 
+ class Garden {
+  constructor(plantsTotal){
+    this.plantsTotal = plantsTotal;
+    this.isWatered = false;
+  }
+    water(){
+      this.isWatered = true;
+    }
+
+    grow(){
+      if(this.isWatered === true){
+        this.plantsTotal += 1;
+        this.isWatered = false;
+      } else {
+        return false;
+      }
+    }
+ }
+
 
 /* Step 32
  *
@@ -501,6 +639,20 @@ var domains = {
  *   removePlanet
  *
  */
+
+ class SolarSystem {
+  constructor(planets){
+    this.planets = [];
+  }
+
+  addPlanet(planet){
+    this.planets.push(planet);
+    }
+
+  removePlanet(planet){
+    this.planets.pop(planet);
+  }
+ }
 
 
 /* Step 33
@@ -536,6 +688,33 @@ var domains = {
  *
  */
 
+ class PrincessLeia extends Person {
+  constructor(name, money, age, gender, isInTrouble) {
+    super(name, money, age, gender);
+    this.isInTrouble = null;
+  }
+
+  shootsGun() {
+    this.isInTrouble = false;
+    return "Leia shoots her gun wildly!"
+  }
+
+  getsInTrouble() {
+    this.isInTrouble = true;
+    return "Help me Obi-wan Kenobi, you're my only hope"
+  }
+
+  marries(Person) {
+    if(Person === "Han Solo"){
+      return true;
+    } else if (Person === "Luke Skywalker") {
+      return "Gross!";
+    } else {
+      return false;
+    }
+  }
+ }
+
 
 /* Step 34
  *
@@ -554,6 +733,21 @@ var domains = {
  *   staplePapers
  *
  */
+
+ class Stapler {
+  constructor(color, maxPapers){
+    this.color = color;
+    this.maxPapers = maxPapers;
+  }
+
+  staplePapers(number){
+    if(number <= this.maxPapers){
+      return true;
+    } else {
+      return false;
+    }
+  }
+ }
 
 
 /* Step 35
@@ -594,6 +788,39 @@ var domains = {
  *   addDiscovery
  *
  */
+
+ class Scientist extends Person {
+  constructor (name, age, money, gender, disciplines, discoveries){
+    super(name, age, money, gender)
+    this.disciplines = [];
+    this.discoveries = [];
+  }
+
+  addDiscipline(discipline) {
+    this.disciplines.push(discipline);
+  }
+
+  checkDiscipline(discipline){
+    if(this.disciplines.indexOf(discipline) > -1){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  addDiscovery(discovery) {
+    this.discoveries.push(discovery);
+      for(var i = 0; i < this.discoveries.length; i++){
+        if (this.discoveries.length === 1){
+          return 'I discovered ' + this.discoveries[i] + ".";
+        } else if (this.discoveries.length === 2) {
+          return 'I discovered ' + this.discoveries[0] + " and " + this.discoveries[1] + ".";
+        } else if (this.discoveries.length === 3) {
+          return 'I discovered ' + this.discoveries[0] + ", " + this.discoveries[1] + ", and " + this.discoveries[2] + ".";
+        }
+      }
+    }
+ }
 
 
 /* Step 36
