@@ -844,6 +844,28 @@ var domains = {
  *
  */
 
+ class BankAccount {
+  constructor(balance, owner) {
+    this.balance = balance;
+    this.owner = owner;
+  }
+
+  withdraw(amount) {
+    this.balance -= amount;
+    this.owner += amount;
+  }
+
+  deposit(amount) {
+    this.balance += amount;
+    this.owner -= amount;
+  }
+
+  rob(amount) {
+    this.owner += amount;
+    this.balance -= amount;
+  }
+ }
+
 
 /* Step 37
  *
@@ -1017,6 +1039,13 @@ var domains = {
  * @param {string} gender  male or female
  */
 
+ class Animal {
+  constructor(species, gender) {
+    this.species = species;
+    this.gender = gender;
+  }
+ }
+
 
 /**
  * Step 51
@@ -1026,6 +1055,12 @@ var domains = {
  * @param {string} model The vehicle's model
  */
 
+class Vehicle {
+  constructor(make, model) {
+    this.make = make;
+    this.model = model;
+  }
+}
 
 /**
  * Step 52
@@ -1037,6 +1072,16 @@ var domains = {
  *
  */
 
+ class Shape {
+  constructor (sides) {
+    if(sides >= 3) {
+      this.sides = sides;
+    } else {
+      this.sides = null;
+    }
+  }
+ }
+
 
 /**
  * Step 53
@@ -1046,6 +1091,13 @@ var domains = {
  * @param {boolean} isOpen     Whether the box is opened or closed
  */
 
+ class Box {
+  constructor(contents, isOpen) {
+    this.contents = contents;
+    this.isOpen = isOpen;
+  }
+ }
+
 
 /**
  * Step 54
@@ -1053,6 +1105,12 @@ var domains = {
  * Door class
  * @param {boolean} isOpen Whether the door is opened or closed
  */
+
+ class Door {
+  constructor(isOpen) {
+    this.isOpen = isOpen;
+  }
+ }
 
 
 /**
@@ -1063,6 +1121,12 @@ var domains = {
  * @param {string} color The shoe color
  */
 
+class Shoe {
+  constructor(size, color) {
+    this.size = size;
+    this.color = color;
+  }
+}
 
 /**
  * Step 56
@@ -1070,6 +1134,12 @@ var domains = {
  * House class
  * @param {number} stories How many stories tall the house is
  */
+
+ class House {
+  constructor (stories) {
+    this.stories = stories;
+  }
+ }
 
 
 /**
@@ -1079,6 +1149,12 @@ var domains = {
  * @param {boolean} isOn Whether the light is on or off
  */
 
+ class Lightbulb {
+  constructor (isOn) {
+    this.isOn = isOn;
+  }
+ }
+
 
 /**
  * Step 58
@@ -1086,6 +1162,12 @@ var domains = {
  * Cookie class
  * @param {string} flavor The cookie's flavor
  */
+
+ class Cookie {
+  constructor(flavor){
+    this.flavor = flavor;
+  }
+ }
 
 
 /**
@@ -1095,6 +1177,12 @@ var domains = {
  * @param {Array} foods All the foods in the meal
  */
 
+ class Meal {
+  constructor(foods) {
+    this.foods = foods;
+  }
+ }
+
 
 /**
  * Create a new instance of the Classes you defined above, below!
@@ -1103,44 +1191,44 @@ var domains = {
 
 
 // Create 2 different species of animals
-var george;
-var nemo;
+var george = new Animal ('Monkey', 'male');
+var nemo = new Animal ('Fish', 'male');
 
 // Create 2 different vehicles
-var civic;
-var forte;
+var civic = new Vehicle('Honda', 'Civic');
+var forte = new Vehicle('KIA', 'Forte');
 
 // Create 2 shapes with different numbers of sides
-var square;
-var hexagon;
+var square = new Shape(4);
+var hexagon = new Shape(6);
 
 // Create 2 boxes
-var catBox;
-var christmasPresent;
+var catBox = new Box(new Animal('Cat'), true);
+var christmasPresent = new Box('Presents', false);
 
 // Create 2 doors
-var automaticDoor;
-var bankVault;
+var automaticDoor = new Door(true);
+var bankVault = new Door(false);
 
 // Create 2 shoes
-var rubySlippers;
-var dressShoes;
+var rubySlippers = new Shoe(7, 'red');
+var dressShoes = new Shoe(10, 'black');
 
 // Create 2 houses
-var singleStory;
-var twoStory;
+var singleStory = new House(1);
+var twoStory = new House(2);
 
 // Create 2 lightbulbs
-var incandescent;
-var halogen;
+var incandescent = new Lightbulb(true);
+var halogen = new Lightbulb(false);
 
 // Create 2 cookies of different flavors
-var chocolateChip;
-var gingerbread;
+var chocolateChip = new Cookie('chocolate');
+var gingerbread = new Cookie('gingerbread');
 
 // Create 2 different meals
-var breakfast;
-var dinner;
+var breakfast = new Meal('cereal and milk');
+var dinner = new Meal('fish and vegetables');
 
 
  /* Steps 81 to 90
@@ -1165,6 +1253,18 @@ var dinner;
  *
  */
 
+ Animal.prototype.isWarmBlooded= function() {
+  if(this.species === 'Fish') {
+    return false;
+  } else if(this.species === 'Monkey') {
+    return true;
+  } else if(this.species === 'Bird') {
+    return true;
+  } else {
+    return 'Could not determine if warm-blooded'
+  }
+ }
+
 
 /* Step 82
  *
@@ -1174,6 +1274,13 @@ var dinner;
  *
  */
 
+Vehicle.prototype.drive = function(streetName) {
+  if (typeof streetName === 'string' && streetName !== ''){
+    return "Driving on " + streetName;
+  } else {
+    return "Driving forward";
+  }
+}
 
  /* Step 83
  *
@@ -1193,6 +1300,28 @@ var dinner;
  *
  */
 
+ Shape.prototype.getType = function() {
+  if (this.sides === 3){
+    return 'triangle';
+  } else if (this.sides === 4){
+    return 'quadrilateral';
+  } else if (this.sides === 5){
+    return 'pentagon';
+  } else if (this.sides === 6){
+    return 'hexagon';
+  } else if (this.sides === 7){
+    return 'heptagon';
+  } else if (this.sides === 8){
+    return 'octagon';
+  } else if (this.sides === 9){
+    return 'nonagon';
+  } else if (this.sides === 10){
+    return 'decagon';
+  } else {
+    return 'Could not determine type';
+  }
+ }
+
 
 /* Step 84
  *
@@ -1203,6 +1332,15 @@ var dinner;
  *
  */
 
+ Box.prototype.openBox = function() {
+  if(this.isOpen === false) {
+    this.isOpen = true;
+    return true;
+  } else {
+    return false;
+  }
+ }
+
 
  /* Step 85
  *
@@ -1212,6 +1350,16 @@ var dinner;
  *
  */
 
+ Door.prototype.openClose = function () {
+  if(this.isOpen === false){
+    this.isOpen = true;
+    return true;
+  } else if(this.isOpen === true){
+    this.isOpen = false;
+    return false;
+  }
+ }
+
 
 /* Step 86
  *
@@ -1219,6 +1367,10 @@ var dinner;
  * the color and size of the shoe ("Found red shoes of size 7").
  *
  */
+
+ Shoe.prototype.findShoes = function(){
+  return "Found " + this.color + " shoes of size " + this.size;
+ }
 
 
  /* Step 87
@@ -1229,6 +1381,14 @@ var dinner;
  * storiesTooTall, return true, else return false.
  *
  */
+
+ House.prototype.isATallStory = function (storiesTooTall) {
+  if(this.stories >= storiesTooTall) {
+    return true;
+  } else {
+    return false;
+  }
+ }
 
 
  /* Step 88
@@ -1241,6 +1401,16 @@ var dinner;
  *
  */
 
+ Lightbulb.prototype.flipSwitch = function (on) {
+  if(on === 'on') {
+    this.isOn = true;
+    return true;
+  } else {
+    this.isOn = false;
+    return false;
+  }
+ }
+
 
  /* Step 89
  *
@@ -1249,6 +1419,14 @@ var dinner;
  * and the dayOfTheWeek is "Monday", return true.  Else return false.
  *
  */
+
+ Cookie.prototype.swipedByCookieMonster = function (dayOfTheWeek) {
+  if(this.flavor === 'chocolate' && dayOfTheWeek === 'Monday') {
+    return true;
+  } else {
+    return false;
+  }
+ }
 
 
  /* Step 90
@@ -1265,6 +1443,17 @@ var dinner;
  *
  */
 
+ Meal.prototype.containsJunkFood = function() {
+  var junkFood = ['chips', 'soda', 'ice cream', 'popcorn', 'candy'];
+  for(var i = 0; i < junkFood.length; i++) {
+    if(this.foods.indexOf(junkFood[i]) > -1){
+      return true;
+    } else {
+      return false;
+    }
+  }
+ }
+
 
  /* Steps 91 to 100
  *
@@ -1279,9 +1468,9 @@ var dinner;
  * and assign the values to each variable below.
  *
  */
-var warmBloodedAnimal;
-var coldBloodedAnimal;
-var notWarmOrColdAnimal;
+var warmBloodedAnimal = new Animal('Monkey', 'female').isWarmBlooded();
+var coldBloodedAnimal = new Animal('Fish', 'male').isWarmBlooded();
+var notWarmOrColdAnimal = new Animal('Bear', 'female').isWarmBlooded();
 
 
 /* Step 92
@@ -1290,8 +1479,8 @@ var notWarmOrColdAnimal;
  * and assign the values to each variable below.
  *
  */
-var streetDriving;
-var forwardDriving;
+var streetDriving = new Vehicle('Nissan', 'Prius').drive("Ainapua Street");
+var forwardDriving = new Vehicle('Aston Martin', 'DB9').drive();
 
 
  /* Step 93
@@ -1300,8 +1489,8 @@ var forwardDriving;
  * and assign the values to each variable below.
  *
  */
-var decagon;
-var polygon;
+var decagon = new Shape(10).getType();
+var polygon = new Shape(11).getType();
 
 
 /* Step 94
@@ -1310,8 +1499,8 @@ var polygon;
  * and assign the values to each variable below.
  *
  */
-var openAClosedBox;
-var closeAnOpenBox;
+var openAClosedBox = new Box('toys', false).openBox();
+var closeAnOpenBox = new Box('candy', true).openBox();
 
 
  /* Step 95
@@ -1320,8 +1509,8 @@ var closeAnOpenBox;
  * and assign the values to each variable below.
  *
  */
-var openAClosedDoor;
-var closeAnOpenDoor;
+var openAClosedDoor = new Door(false).openClose();
+var closeAnOpenDoor = new Door(true).openClose();
 
 
 /* Step 96
@@ -1330,8 +1519,8 @@ var closeAnOpenDoor;
  * and assign the values to each variable below.
  *
  */
-var redShoesSize7;
-var blackShoesSize10;
+var redShoesSize7 = new Shoe(7, 'red').findShoes();
+var blackShoesSize10 = new Shoe(10, 'black').findShoes();
 
 
  /* Step 97
@@ -1340,8 +1529,8 @@ var blackShoesSize10;
  * and assign the values to each variable below.
  *
  */
-var farTooTallAStory;
-var shortStory;
+var farTooTallAStory = new House(20).isATallStory(3);
+var shortStory = new House(2).isATallStory(5);
 
 
  /* Step 98
@@ -1350,8 +1539,8 @@ var shortStory;
  * and assign the values to each variable below.
  *
  */
-var kitchenLightsOn;
-var porchLightsOff;
+var kitchenLightsOn = new Lightbulb(false).flipSwitch('on');
+var porchLightsOff = new Lightbulb(true).flipSwitch('off');
 
 
  /* Step 99
@@ -1360,8 +1549,8 @@ var porchLightsOff;
  * and assign the values to each variable below.
  *
  */
-var cookieMonsterPwns;
-var cookieMonsterBlocked;
+var cookieMonsterPwns = new Cookie('chocolate').swipedByCookieMonster('Monday');
+var cookieMonsterBlocked = new Cookie('Peanut Butter').swipedByCookieMonster('Friday');
 
 
  /* Step 100
@@ -1370,5 +1559,5 @@ var cookieMonsterBlocked;
  * and assign the values to each variable below.
  *
  */
-var badForYou;
-var goodForYou;
+var badForYou = new Meal (['candy', 'popcorn', 'soda', 'ALOT OF OTHER BAD SHIT']).containsJunkFood();
+var goodForYou = new Meal (['Steak', 'Rice', 'Salad', 'Soup']).containsJunkFood();
